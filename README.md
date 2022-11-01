@@ -1,2 +1,4 @@
 # TelegramBotBoilerPlate
-Boiler plate for develop telegram bot with node js
+Boiler plate for develop telegram bot with nodejs
+
+**Under construction**
