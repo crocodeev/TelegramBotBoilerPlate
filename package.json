@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "set MODE=develop&&node index.js",
-    "dev:layout": "webpack-dev-server"
+    "dev:layout": "webpack-dev-server",
+    "dev:tg": "npm run https-fwd&&npm run dev:layout",
+    "https-fwd": "node https-forwarding.js"
   },
   "author": "crocodeev",
   "license": "ISC",
@@ -22,6 +24,7 @@
     "node-telegram-bot-api": "^0.59.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.3",
     "styled-components": "^5.3.6"
   },
   "devDependencies": {
