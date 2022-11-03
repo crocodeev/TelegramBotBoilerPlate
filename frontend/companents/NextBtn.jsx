@@ -4,7 +4,7 @@ import SkipNext from '@mui/icons-material/SkipNext';
 
 
 
-const NextBtn = () => {
+const NextBtn = ({onClick}) => {
 
     const [ mute, setMute ] = useState(false);
     
@@ -12,7 +12,8 @@ const NextBtn = () => {
         <IconButton 
         component="label"
         size="large"
-        onClick={() => setMute(!mute)}>
+        onClick={() => { onClick()}}
+        >
         <SkipNext 
             color="action"
             fontSize="large"/>
