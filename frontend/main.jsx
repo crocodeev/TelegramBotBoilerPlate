@@ -1,31 +1,42 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-} from "react-router-dom";
-import { StrictMode } from "react";
-import Controls from "./routes/Controls";
-import Dislike from "./routes/Dislike";
+import { useEffect, useState } from "react";
+import ColorPallete from "./companents/ColorPallete";
+import UserInfo from "./companents/UserInfo";
 
+const App = () => {
 
-const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Controls />,
-    },
-    {
-      path: "bye",
-      element: <Dislike />,
-    },
-  ]);
+    const [ themeScheme, setThemeScheme ] = useState({}); 
 
-const Routes = () => {
+    const setColors = () => {
+      const theme = window.Telegram.WebApp.themeParams;
+      const html = document.getElementsByTagName('html')[0];
+      html.style.backgroundColor = theme.bg_color;
+      html.style.color = theme.text_color;
+
+      setThemeScheme(() => {
+       return( {
+        ...themeScheme,
+        ...theme
+      })
+      })
+    }
+
+  useEffect(() => {
+      setColors();
+      window.Telegram.WebApp.onEvent('themeChanged', setColors);
+      return(() => {
+          window.Telegram.WebApp.offEvent('themeChanged', setColors);
+      })
+  }, [])
 
     return(
-      <StrictMode>
-        <RouterProvider router={router} />
-      </StrictMode>
+      <div>
+        <h3>Telegram WebApp API Demo</h3>
+        <hr/>
+        <ColorPallete themeParams={themeScheme}></ColorPallete>
+        <hr/>
+        <UserInfo />
+      </div>
     );
 }
 
-export default Routes;
+export default App;

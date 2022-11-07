@@ -6,7 +6,7 @@ async function getDevelopUrl(token) {
     const URL = await ngrok.connect({
         authtoken: token,
         addr: 8080,
-        host_header: "localhost"
+        host_header: "localhost",
     });
 
     return URL;
