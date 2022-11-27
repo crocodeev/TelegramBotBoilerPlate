@@ -11,10 +11,13 @@ const HTML_FILE = path.join(DIST_DIR, '../frontend/index.html');
 console.log("HTML_FILE: ", HTML_FILE);
 
 app.use(express.static(DIST_DIR));
+app.use(express.json());
+app.use('/api', api);
 
 app.get('*', (req, res) => {
     res.sendFile(HTML_FILE);
 })
+
 
 const PORT = process.env.PORT || 8080;
 

@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import ColorPallete from "./companents/ColorPallete";
+import ExpandBtn from "./companents/ExpandBtn";
+import CloseBtn from "./companents/CloseBtn";
+import ToggleMainBtn from "./companents/ToggleMainBtn";
 import UserInfo from "./companents/UserInfo";
+import ValidationForm from "./companents/ValidationForm";
 
 const App = () => {
 
@@ -34,7 +38,14 @@ const App = () => {
         <hr/>
         <ColorPallete themeParams={themeScheme}></ColorPallete>
         <hr/>
+        <ExpandBtn />
+        <CloseBtn />
+        <ToggleMainBtn />
+        <hr/>
         <UserInfo />
+        <hr/>
+        <h3>Validation</h3>
+        <ValidationForm />
       </div>
     );
 }
