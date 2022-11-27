@@ -6,6 +6,8 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from '../webpack/frontend.dev.config';
+import api from './routers/api';
+
 
 const app = express();
 const DIST_DIR = __dirname;
@@ -17,6 +19,8 @@ app.use(webpackDevMiddleware(compiler, {
   }));
 
 app.use(webpackHotMiddleware(compiler));  
+app.use(express.json());
+app.use('/api', api);
 
 app.get('*', (req, res, next) => {
     compiler.outputFileSystem.readFile(HTML_FILE, (err, result) => {
@@ -29,6 +33,7 @@ app.get('*', (req, res, next) => {
     res.end()
     })
   });
+
 
 const PORT = process.env.PORT || 8080;
 
